@@ -5,14 +5,14 @@ variable "vnet_subnet_list" {
 }
 
 
-variable "virtual_network_output" {
-  type        = map(any)
-  default     = {}
-  description = "list of virtual network objects "
-}
+# variable "virtual_network_output" {
+#   type        = map(any)
+#   default     = {}
+#   description = "list of virtual network objects "
+# }
 
-variable "resource_group_output" {
-  type        = map(any)
-  default     = {}
-  description = "list of resource group objects "
-}
+# variable "resource_group_output" {
+#   type        = map(any)
+#   default     = {}
+#   description = "list of resource group objects "
+# }
