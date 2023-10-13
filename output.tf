@@ -4,5 +4,5 @@ output "vnet_subnet_output" {
 }
 
 output "remote_state" {
-  value = data.terraform_remote_state.primary-state
+  value = data.terraform_remote_state.primary-state.outputs
 }
