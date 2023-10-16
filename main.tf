@@ -2,8 +2,8 @@
 resource "azurerm_subnet" "subnet" {
  for_each                       = local.subnet
  name                           = each.value.name
- resource_group_name            = each.value.resource_group_name #var.resource_group_output[each.value.resource_group_name].name  #data.terraform_remote_state.primary-state.outputs.resource_group_output[each.value.resource_group_name].name
- virtual_network_name           = each.value.virtual_network_name #var.virtual_network_output[each.value.virtual_network_name].name   #data.terraform_remote_state.primary-state.outputs.virtual_network_output[each.value.virtual_network_name].name 
+ resource_group_name            = var.resource_group_output[each.value.resource_group_name].name #each.value.resource_group_name   #data.terraform_remote_state.primary-state.outputs.resource_group_output[each.value.resource_group_name].name
+ virtual_network_name           = var.virtual_network_output[each.value.virtual_network_name].name #each.value.virtual_network_name    #data.terraform_remote_state.primary-state.outputs.virtual_network_output[each.value.virtual_network_name].name 
  address_prefixes               = each.value.address_prefixes
  service_endpoints              = each.value.service_endpoints
  #service_endpoint_policy_ids    = each.value.service_endpoint_policy_ids
