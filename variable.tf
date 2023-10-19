@@ -16,3 +16,9 @@ variable "resource_group_output" {
   default     = {}
   description = "list of resource group objects "
 }
+
+variable"service_endpoint_policy_output" {
+  type          = map(any)
+  default       = {}
+  description   = "object list of service enpoint policy"
+}
