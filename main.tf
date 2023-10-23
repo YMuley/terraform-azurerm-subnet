@@ -6,7 +6,7 @@ resource "azurerm_subnet" "subnet" {
  virtual_network_name           = var.virtual_network_output[each.value.virtual_network_name].name #each.value.virtual_network_name    #data.terraform_remote_state.primary-state.outputs.virtual_network_output[each.value.virtual_network_name].name 
  address_prefixes               = each.value.address_prefixes
  service_endpoints              = each.value.service_endpoints == null ? null : each.value.service_endpoints
- service_endpoint_policy_ids    = flatten(each.value.service_endpoint_policy_ids) == null ? flatten(each.value.service_endpoint_policy_ids) : flatten([ for service_endpoint_policy in var.service_endpoint_policy_output : service_endpoint_policy.id  if contains(each.value.service_endpoint_policy_ids,service_endpoint_policy.name) == true ])
+ service_endpoint_policy_ids    = flatten([ for service_endpoint_policy in var.service_endpoint_policy_output : service_endpoint_policy.id  if contains(each.value.service_endpoint_policy_ids,service_endpoint_policy.name) == true ])
  private_endpoint_network_policies_enabled      = each.value.private_endpoint_network_polices_enabled
  private_link_service_network_policies_enabled  = each.value.private_link_service_network_policies_enabled
 
