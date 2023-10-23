@@ -22,8 +22,8 @@ resource "azurerm_subnet" "subnet" {
                 #         }
                 # }
                 service_delegation {
-                    name = delegation.value.service_delegation.value.name
-                    actions = delegation.value.service_delegation.value.name
+                    name = delegation.value.service_delegation[value].name
+                    actions = delegation.value.service_delegation[value].actions
                 }
         }
     }
