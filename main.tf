@@ -15,7 +15,7 @@ resource "azurerm_subnet" "subnet" {
         content{
             name = delegation.value.name
                 dynamic "service_delegation"{
-                    for_each = delegation.value.service_delegation[*] != null ? delegation.value.service_delegation : []
+                    for_each = lookup(delegation.value.service_delegation,each.value,null)
                         content{
                             name    = service_delegation.value.name
                             actions = service_delegation.value.actions
