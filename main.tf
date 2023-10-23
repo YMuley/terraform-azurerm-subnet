@@ -15,7 +15,7 @@ resource "azurerm_subnet" "subnet" {
         content{
             name = delegation.value.name
                 dynamic "service_delegation"{
-                    for_each = delegation.value.service_delegation != [] ? [1] : []
+                    for_each = delegation.value.service_delegation != [] ? ["1"] : []
                         content{
                             name    = service_delegation.value.name
                             actions = service_delegation.value.actions
