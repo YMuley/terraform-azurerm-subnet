@@ -14,17 +14,14 @@ resource "azurerm_subnet" "subnet" {
     for_each    = each.value.delegation
         content{
             name = delegation.value.name
-                # dynamic "service_delegation"{
-                #     for_each = delegation.value.service_delegation.name == null ? null :delegation.value.service_delegation
-                #         content{
-                #             name    = service_delegation.value.name
-                #             actions = service_delegation.value.actions
-                #         }
-                # }
-                service_delegation {
-                    name = delegation.value.service_delegation[each.value.name]
-                    actions = delegation.value.service_delegation[each.value.actions]
+                dynamic "service_delegation"{
+                    for_each = delegation.value.service_delegation
+                        content{
+                            name    = length(service_delegation.value.name) == 0 ? null : service_delegation.value.name
+                            actions = length(service_delegation.value.actions) == 0 ? null : service_delegation.value.actions
+                        }
                 }
+                
         }
     }
 }
