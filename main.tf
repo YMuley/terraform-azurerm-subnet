@@ -11,14 +11,14 @@ resource "azurerm_subnet" "subnet" {
  private_link_service_network_policies_enabled  = each.value.private_link_service_network_policies_enabled
 
  dynamic "delegation" {
-    for_each    = each.value.delegation != {} ? ["onetime"] : []  #each.value.delegation
+    for_each    =   each.value.delegation #each.value.delegation != {} ? ["onetime"] : []
         content{
             name = delegation.value.name
                 dynamic "service_delegation"{
-                    for_each = delegation.value.service_delegation
+                    for_each = delegation.value.service_delegation.*
                         content{
-                            name    = service_delegation.value.name
-                            actions = service_delegation.value.actions
+                            name    = service_delegation.value.name == "" ? null : service_delegation.value.name
+                            actions = service_delegation.value.actions == [] ? null : service_delegation.value.actions
                         }
                 }
                 
